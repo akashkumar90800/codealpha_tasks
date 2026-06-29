@@ -33,7 +33,6 @@ let songs = [
   {src: "C:/internship2/songs/Mast Nazron Se Allah Bachaye (Nusrat Fateh Ali Khan).mp3", title: "mast Nazron Se Allah Bachaye", artist: "Nusrat Fateh Ali Khan"},
   {src: "C:/internship2/songs/o mere dil ruba lata mangeskar.mp3", title: "o mere dil ruba ", artist: "lata mangeskar"},
   {src: "C:/internship2/songs/pal pal har pal shreya ghosal.mp3", title: "pal pal har pal", artist: "shreya ghosal"},
-  {src: "C:/internship2/songs/pal pal har pal shreya ghosal.mp3", title: "pal pal har pal", artist: "shreya ghosal"},
   {src: "C:/internship2/songs/phir bhi tumko chahunga arijit singh.mp3", title: "phir bhi tumko chahunga", artist: "arijit singh"},
   {src: "C:/internship2/songs/puchho na puchho kya hua shreya ghosal.mp3", title: "puchho na puchho kya hua", artist: "shreya ghosal"},
   {src: "C:/internship2/songs/saibo shreya ghosal.mp3", title: "saibo", artist: "shreya ghosal"},
@@ -53,9 +52,16 @@ let currentIndex = 0;
 
 // Load song
 function loadSong(index) {
-  audio.src = songs[index].src;
-  title.innerText = songs[index].title;
-  artist.innerText = songs[index].artist;
+  currentIndex = Number(index);
+  const song = songs[currentIndex];
+  if (!song) return;
+  audio.src = song.src;
+  title.innerText = song.title;
+  artist.innerText = song.artist;
+  progress.value = 0;
+  progress.max = 0;
+  duration.innerText = "00:00 / 00:00";
+  audio.load();
 }
 loadSong(currentIndex);
 
@@ -83,15 +89,26 @@ prevBtn.addEventListener("click", () => {
   audio.play();
 });
 
+// Update progress when metadata loads
+audio.addEventListener("loadedmetadata", () => {
+  if (!isNaN(audio.duration)) {
+    progress.max = audio.duration;
+    duration.innerText = formatTime(audio.currentTime) + " / " + formatTime(audio.duration);
+  }
+});
+
 // Progress bar update
 audio.addEventListener("timeupdate", () => {
-  progress.value = audio.currentTime;
-  progress.max = audio.duration;
-  duration.innerText = formatTime(audio.currentTime) + " / " + formatTime(audio.duration);
+  if (!isNaN(audio.duration)) {
+    progress.value = audio.currentTime;
+    duration.innerText = formatTime(audio.currentTime) + " / " + formatTime(audio.duration);
+  }
 });
 
 progress.addEventListener("input", () => {
-  audio.currentTime = progress.value;
+  if (!isNaN(audio.duration)) {
+    audio.currentTime = progress.value;
+  }
 });
 
 // Volume control
@@ -102,7 +119,7 @@ volume.addEventListener("input", () => {
 // Playlist click
 playlist.querySelectorAll("li").forEach(item => {
   item.addEventListener("click", () => {
-    currentIndex = item.dataset.index;
+    currentIndex = Number(item.dataset.index);
     loadSong(currentIndex);
     audio.play();
   });
