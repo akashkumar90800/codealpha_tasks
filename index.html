@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="player">
+    <h2 id="title">Song Title</h2>
+    <h4 id="artist">Artist Name</h4>
+
+    <audio id="audio"></audio>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="prev">⏮️</button>
+      <button id="play">▶️</button>
+      <button id="pause">⏸️</button>
+      <button id="next">⏭️</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <input type="range" id="progress" value="0" step="1">
+      <span id="duration">00:00</span>
+    </div>
+
+    <!-- Volume Control -->
+    <div class="volume-container">
+      <label>🔊 Volume</label>
+      <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+    </div>
+
+    <!-- Playlist -->
+<ul id="playlist">
+  <li data-index="0">17barish - Lata Mangeskar</li>
+  <li data-index="1">aa jao na - Arijit Singh</li>
+  <li data-index="2">agar tum mil jao - Shreya Ghosal</li>
+  <li data-index="3">agar tum sath ho - AR Rahman</li>
+  <li data-index="4">andhekhi anjani si - Lata Mangeskar</li>
+  <li data-index="5">apki nazron ne samjhe - Lata Mangeskar</li>
+  <li data-index="6">bairiya - Arijit Singh</li>
+  <li data-index="7">bekhayali - Arijit Singh</li>
+  <li data-index="8">bheegi bheegi raton me - Lata Mangeskar</li>
+  <li data-index="9">deewana deewana - AR Rahman</li>
+  <li data-index="10">dekha ek khawab - Lata Mangeskar</li>
+  <li data-index="11">dhadak - Shreya Ghosal</li>
+  <li data-index="12">dil to pagal hai - Lata Mangeskar</li>
+  <li data-index="13">ek mithi si chubhan - Lata Mangeskar</li>
+  <li data-index="14">gehra hua - Arijit Singh</li>
+  <li data-index="15">Guzarish - AR Rahman</li>
+  <li data-index="16">ham tere pyar me - Lata Mangeskar</li>
+  <li data-index="17">lagja gale - Lata Mangeskar</li>
+  <li data-index="18">lo man liya - Arijit Singh</li>
+  <li data-index="19">mast Nazron Se Allah Bachaye - Nusrat Fateh Ali Khan</li>
+  <li data-index="20">o mere dil ruba - Lata Mangeskar</li>
+  <li data-index="21">pal pal har pal - Shreya Ghosal</li>
+  <li data-index="22">phir bhi tumko chahunga - Arijit Singh</li>
+  <li data-index="23">puchho na puchho kya hua - Shreya Ghosal</li>
+  <li data-index="24">saibo - Shreya Ghosal</li>
+  <li data-index="25">sajini - Arijit Singh</li>
+  <li data-index="26">samjhawan - Shreya Ghosal</li>
+  <li data-index="27">sitare - Arijit Singh</li>
+  <li data-index="28">sun raha hai na tu - Shreya Ghosal</li>
+  <li data-index="29">suna hai tere dil - Shreya Ghosal</li>
+  <li data-index="30">tere bina zindagi se koi sikwa to nahi - Lata Mangeskar</li>
+  <li data-index="31">tere kayant mere khali haath - AR Rahman</li>
+  <li data-index="32">tu hai to mai hu - Arijit Singh</li>
+  <li data-index="33">tum yaad aaye - Lata Mangeskar</li>
+  <li data-index="34">yaad sataye teri neend - Lata Mangeskar</li>
+</ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
